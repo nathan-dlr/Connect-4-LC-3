@@ -265,16 +265,16 @@ DONE        LD  R1, SAVER1
   
 
 CHECK_TIE
-         LD  R1, BOARD_HEAD
-         LD  R3, -NEG
-         AND R5, R5, #0
-LOOP4    LDR R1, R1, #0
-         BRz TIE 
-         LDR R2, R1, #2
-         ADD R4, R3, R2
-         BRnp LOOP4
-NO_TIE   ADD R5, R5, #1
-TIE      RET
+            LD  R1, BOARD_HEAD
+            LD  R3, -NEG
+            AND R5, R5, #0
+LOOP4       LDR R1, R1, #0
+            BRz TIE 
+            LDR R2, R1, #2
+            ADD R4, R3, R2
+            BRnp LOOP4
+NO_TIE      ADD R5, R5, #1
+TIE         RET
 
 .END
 
