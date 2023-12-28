@@ -208,59 +208,59 @@ WIN_V       LD  R2, SAVER2
 
 CHECK_SIDES
 
-         ST  R1, SAVER1
-         ST  R2, SAVER2
-         ST  R6, SAVER6
-         ST  R7, SAVER7
-         AND R7, R7, #0  ;R7 will indicate where we're checking. -1=down diagonal, 0=horizontal, 1=up diagonal
-         ADD R7, R7 #-1  ;R7 will also offset the row number in R3
-         NOT R1, R1
-         ADD R1, R1, #1 
-         ADD R3, R1, R2 ;find row, store in R3
-         ST  R3, SAVER3
-         LD  R1, SAVER1
-CHECKLFT AND R4, R4, #0  ;R4 will count if we have a connect four; it will return 4 if it detects a connect four and a 0 if it doesn't
-         ADD R4, R4, #1  ;it already has one from the piece we just placed 
-CHCKLFT2 LDR R1, R1, #1
-         BRz CHECKRHT
-         ADD R3, R7, R3 ;add offset 
-         ADD R2, R3, R1
-         LDR R6, R2, #0 
-         ADD R6, R5, R6
-         BRnp CHECKRHT
-         ADD R4, R4, #1
-         ADD R6, R4, #-4
-         BRz DONE
-         BRnzp CHCKLFT2
-CHECKRHT LD  R1, SAVER1
-         LD  R3, SAVER3
-         NOT R7, R7
-         ADD R7, R7, #1 ;need the offset to be negative as we check the other direction
-CHCKRHT2 LDR R1, R1, #0 
-         BRz NO_WIN
-         ADD R3, R7, R3 
-         ADD R2, R1, R3
-         LDR R6, R2, #0
-         ADD R6, R5, R6
-         BRnp NO_WIN
-         ADD R4, R4, #1
-         ADD R6, R4, #-4
-         BRz DONE
-         BRnzp CHCKRHT2
-NO_WIN   AND R4, R4, #0
-         NOT R7, R7
-         ADD R7, R7, #1
-         BRp DONE  ;(CHANGE)
-         ADD R7, R7, #1
-         LD  R1, SAVER1
-         LD  R2, SAVER2
-         LD  R6, SAVER6
-         BRnzp CHECKLFT
-DONE     LD  R1, SAVER1
-         LD  R2, SAVER2
-         LD  R6, SAVER6
-         LD  R7, SAVER7 
-         RET
+            ST  R1, SAVER1
+            ST  R2, SAVER2
+            ST  R6, SAVER6
+            ST  R7, SAVER7
+            AND R7, R7, #0  ;R7 will indicate where we're checking. -1=down diagonal, 0=horizontal, 1=up diagonal
+            ADD R7, R7 #-1  ;R7 will also offset the row number in R3
+            NOT R1, R1
+            ADD R1, R1, #1 
+            ADD R3, R1, R2 ;find row, store in R3
+            ST  R3, SAVER3
+            LD  R1, SAVER1
+CHECKLFT    AND R4, R4, #0  ;R4 will count if we have a connect four; it will return 4 if it detects a connect four and a 0 if it doesn't
+            ADD R4, R4, #1  ;it already has one from the piece we just placed 
+CHCKLFT2    LDR R1, R1, #1
+            BRz CHECKRHT
+            ADD R3, R7, R3 ;add offset 
+            ADD R2, R3, R1
+            LDR R6, R2, #0 
+            ADD R6, R5, R6
+            BRnp CHECKRHT
+            ADD R4, R4, #1
+            ADD R6, R4, #-4
+            BRz DONE
+            BRnzp CHCKLFT2
+CHECKRHT    LD  R1, SAVER1
+            LD  R3, SAVER3
+            NOT R7, R7
+            ADD R7, R7, #1 ;need the offset to be negative as we check the other direction
+CHCKRHT2    LDR R1, R1, #0 
+            BRz NO_WIN
+            ADD R3, R7, R3 
+            ADD R2, R1, R3
+            LDR R6, R2, #0
+            ADD R6, R5, R6
+            BRnp NO_WIN
+            ADD R4, R4, #1
+            ADD R6, R4, #-4
+            BRz DONE
+            BRnzp CHCKRHT2
+NO_WIN      AND R4, R4, #0
+            NOT R7, R7
+            ADD R7, R7, #1
+            BRp DONE  ;(CHANGE)
+            ADD R7, R7, #1
+            LD  R1, SAVER1
+            LD  R2, SAVER2
+            LD  R6, SAVER6
+            BRnzp CHECKLFT
+DONE        LD  R1, SAVER1
+            LD  R2, SAVER2
+            LD  R6, SAVER6
+            LD  R7, SAVER7 
+            RET
         
   
 
